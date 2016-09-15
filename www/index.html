@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<meta http-equiv="Content-Security-Policy" content="default-src *; img-src *  data:;child-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval';"/>
+<meta http-equiv="Content-Security-Policy" content="">
+
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/libs/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/libs/ratchet.css" />
+    <link rel="stylesheet" type="text/css" href="css/libs/owl.carousel.css" />
+    <link href='http://fonts.googleapis.com/css?family=Hind:400,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    
+    <title>Neurosurgery</title>
+  </head>
+  <body>
+    <div id="header"></div>
+    <div id="content"></div>
+    <div id="footer"></div>
+    <div id="loading-spinner" data-state="inactive">
+      <figure>
+        <div class="spinner"></div>
+        <figcaption>Now Loading...</figcaption>
+      </figure>
+    </div>
+    <div id="spinner-background" data-state="inactive"></div>
+    <div id="loader"></div>
+    <div id="loader-background"></div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <!-- libraries -->
+    <script type="text/javascript" src="js/libs/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.panzoom.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="js/libs/underscore.js"></script>
+    <script type="text/javascript" src="js/libs/backbone.js"></script>
+    <script type="text/javascript" src="js/libs/backbone.localStorage.js"></script>
+    <script type="text/javascript" src="js/libs/ratchet.js"></script>
+    <script type="text/javascript" src="js/libs/fastclick.js"></script>
+    <script type="text/javascript" src="js/libs/owl.carousel.js"></script>
+    <script type="text/javascript" src="js/libs/spin.js"></script>
+    <script type="text/javascript" src="js/libs/moment.min.js"></script>
+    <script type="text/javascript" src="js/libs/image-touch-canvas.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+
+    <!-- config -->
+    <script type="text/javascript" src="js/config.js"></script>
+    
+    <!-- views -->
+    <script type="text/javascript" src="js/views/careProviderRolesView.js"></script>
+    <script type="text/javascript" src="js/views/conditionView.js"></script>
+    <script type="text/javascript" src="js/views/coordinatorsView.js"></script>
+    <script type="text/javascript" src="js/views/contactView.js"></script>
+    <script type="text/javascript" src="js/views/doctorsView.js"></script>
+    <script type="text/javascript" src="js/views/residentsView.js"></script>
+    <script type="text/javascript" src="js/views/footerView.js"></script>
+    <script type="text/javascript" src="js/views/headerView.js"></script>
+    <script type="text/javascript" src="js/views/homeView.js"></script>
+    <script type="text/javascript" src="js/views/notesView.js"></script>
+    <script type="text/javascript" src="js/views/residentsView.js"></script>
+    <script type="text/javascript" src="js/views/searchConditionsView.js"></script>
+    <script type="text/javascript" src="js/views/searchPeopleView.js"></script>
+    <script type="text/javascript" src="js/views/servicesView.js"></script>
+    <script type="text/javascript" src="js/views/settingsView.js"></script>
+    <script type="text/javascript" src="js/views/socialMediaView.js"></script>
+    <script type="text/javascript" src="js/views/staffView.js"></script>
+    <script type="text/javascript" src="js/views/teamView.js"></script>
+    <script type="text/javascript" src="js/views/termsConditionsView.js"></script>
+
+    <!-- models -->
+    <script type="text/javascript" src="js/models/careProviderRoleModel.js"></script>
+    <script type="text/javascript" src="js/models/conditionModel.js"></script>
+    <script type="text/javascript" src="js/models/contactModel.js"></script>
+    <script type="text/javascript" src="js/models/coordinatorModel.js"></script>
+    <script type="text/javascript" src="js/models/dashboardModuleModel.js"></script>
+    <script type="text/javascript" src="js/models/doctorModel.js"></script>
+    <script type="text/javascript" src="js/models/residentModel.js"></script>
+    <script type="text/javascript" src="js/models/noteModel.js"></script>
+    <script type="text/javascript" src="js/models/residentModel.js"></script>
+    <script type="text/javascript" src="js/models/servicesModel.js"></script>
+    <script type="text/javascript" src="js/models/staffModel.js"></script>
+    <script type="text/javascript" src="js/models/termsAgreementModel.js"></script>
+
+    <!-- utilities -->
+    <script type="text/javascript" src="js/utils/AppLaunchAdapter.js"></script>
+    <script type="text/javascript" src="js/utils/ApplicationHelper.js"></script>
+    <script type="text/javascript" src="js/utils/CameraAdapter.js"></script>
+    <script type="text/javascript" src="js/utils/DialogAdapter.js"></script>
+    <script type="text/javascript" src="js/utils/GeolocationAdapter.js"></script>
+    <script type="text/javascript" src="js/utils/SQLiteAdapter.js"></script>
+    <script type="text/javascript" src="js/utils/LocalNotificationAdapter.js"></script>
+    <script type="text/javascript" src="js/utils/LocalStorageAdapter.js"></script>
+    <script type="text/javascript" src="js/utils/NetworkAdapter.js"></script>
+    <script type="text/javascript" src="js/utils/ServiceAdapter.js"></script>
+    <script type="text/javascript" src="js/utils/SpinAdapter.js"></script>
+
+    <!-- router -->
+    <script type="text/javascript" src="js/router.js"></script>
+
+    <!-- init -->
+    <script type="text/javascript" src="js/index.js"></script>
+    <script>
+      (function () {
+        fixContentSize();
+      })();
+    </script>
+  </body>
+</html>

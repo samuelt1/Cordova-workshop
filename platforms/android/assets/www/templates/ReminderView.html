@@ -1,0 +1,28 @@
+<div id="modal">
+  <div class="modal-header">
+    <center><b><%= title %></b></center>
+  </div>
+  <div class="modal-body markdown">
+    <p><%= content %></p>
+    <p>
+      <a class="external-url"><%= url_name %></a>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button id="btnOk" class="btn modal-button">OK</button>
+    <% if (is_show_snooze === true) { %>
+    <button id="btnSnooze" class="btn modal-button">Snooze</button>
+    <% } %>
+  </div>
+</div>  
+<script>
+  $('#modal').on('click', '.modal-body a', function (event) {
+    var href = $(this).attr('href');
+    if (typeof href !== 'undefined' && href.substr(0, 7) === 'http://')
+    {
+      event.preventDefault();
+      // Open in default browser App (on desktop: open in new window/tab)
+      window.open(this.href, '_system', 'location=no');
+    }
+  });
+</script>

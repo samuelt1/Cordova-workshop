@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="org.mobilizelabs.neurosurgery" version="1.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="loglevel" value="DEBUG" />
+    <feature name="startApp">
+        <param name="android-package" value="com.lampa.startapp.startApp" />
+    </feature>
+    <feature name="AppAvailability">
+        <param name="android-package" value="com.ohh2ahh.appavailability.AppAvailability" />
+    </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="YoikScreenOrientation">
+        <param name="android-package" value="net.yoik.cordova.plugins.screenorientation.YoikScreenOrientation" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Toast">
+        <param name="android-package" value="nl.xservices.plugins.Toast" />
+    </feature>
+    <feature name="LocalNotification">
+        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
+    </feature>
+    <feature name="SQLitePlugin">
+        <param name="android-package" value="io.sqlc.SQLitePlugin" />
+    </feature>
+    <icon density="ldpi" src="res/android/icons/ldpi.png" />
+    <icon density="mdpi" src="res/android/icons/mdpi.png" />
+    <icon density="hdpi" src="res/android/icons/hdpi.png" />
+    <icon density="xhdpi" src="res/android/icons/xhdpi.png" />
+    <splash density="land-hdpi" src="res/android/splash/splash-land-hdpi/screen.png" />
+    <splash density="land-ldpi" src="res/android/splash/splash-land-ldpi/screen.png" />
+    <splash density="land-mdpi" src="res/android/splash/splash-land-mdpi/screen.png" />
+    <splash density="land-xhdpi" src="res/android/splash/splash-land-xhdpi/screen.png" />
+    <splash density="port-hdpi" src="res/android/splash/splash-port-hdpi/screen.png" />
+    <splash density="port-ldpi" src="res/android/splash/splash-port-ldpi/screen.png" />
+    <splash density="port-mdpi" src="res/android/splash/splash-port-mdpi/screen.png" />
+    <splash density="port-xhdpi" src="res/android/splash/splash-port-xhdpi/screen.png" />
+    <name>Neurosurgery</name>
+    <description>
+    </description>
+    <author email="taron@oit.ucla.edu" href="http://mobilizelabs.org">
+        Mobilize Labs
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <access launch-external="yes" origin="geo:*" />
+    <access launch-external="yes" origin="tel:*" />
+    <access launch-external="yes" origin="mailto:*" />
+    <allow-navigation href="http://*/*" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#474747" />
+    <preference name="AllowInlineMediaPlayback" value="true" />
+    <allow-navigation href="*" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="2000" />
+</widget>

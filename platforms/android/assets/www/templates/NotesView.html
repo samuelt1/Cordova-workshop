@@ -1,0 +1,42 @@
+<div class="main-header content-padded">
+  <a href="#notes/0" class="btn btn-link btn-nav pull-right">
+    <img src="img/icons/add.png" class="icon-title"></img>
+  </a>
+  <% if (typeof(notesArr) !== 'undefined' && notesArr.length > 0) { %>
+  <% if (is_edit !== true) { %>
+  <button id="btnEdit" class="btn btn-edit pull-right">
+    <span><%= editText %></span>
+  </button>
+  <% } else { %>
+  <button id="btnDone" class="btn btn-done pull-right">
+    <span><%= doneText %></span>
+  </button>
+  <% } %>
+  <% } %>
+  <h4><%= title %></h4>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <% if (typeof(notesArr) !== 'undefined' && notesArr.length > 0) { %>
+    <% for(var i = 0; i < notesArr.length; i++) { %>
+    <li class="table-view-cell media">
+
+      <% if (is_edit !== true) { %>
+      <a class="navigate-right" href='#notes/<%= notesArr[i].id %>'>
+        <b><%= notesArr[i].title %></b>
+        <span class="listed-date"><% print(new Date(notesArr[i].updated_at).toLocaleDateString()) %></span>
+      </a>
+      <% } else { %>
+      <a class="btn btn-link btn-delete" data-id='<%= notesArr[i].id %>'><img src="img/icons/delete.png" alt="delete" class="icon-delete"></a>
+      <b><%= notesArr[i].title %></b>
+      <span class="listed-date"><% print(new Date(notesArr[i].updated_at).toLocaleDateString()) %></span>
+      <% } %>
+    </li>
+    <% } %>
+    <% } else { %>
+    <li class="table-view-cell media">
+      <p><%= emptyText %></p>
+    </li>
+    <% } %> 
+  </ul>
+</div>

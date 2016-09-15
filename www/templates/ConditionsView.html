@@ -1,0 +1,28 @@
+<div class="search-header content-padded">
+  <form>
+    <button class="btn search-button">
+      <img src="img/icons/search.png" class="icon-search"></img>
+    </button>
+    <div class="search-input-area">
+      <input id="txtSearch" type="search" class="search-query inset-shadow" placeholder='<%= searchText %>' value='<%= searched %>'  autocomplete="off">
+      <div class="search-results"></div>
+    </div>
+  </form>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <% if (typeof(conditions) !== 'undefined' && conditions.length > 0) { %>
+    <% for(var i = 0; i < conditions.length; i++) { %>
+    <li class="table-view-cell media">
+      <a class="navigate-right" href='#conditions/<%= conditions[i].id %>'>
+        <div class="media-body"><%= conditions[i].name %></div>
+      </a>
+    </li>
+    <% } %>
+    <% } else { %>
+    <li class="table-view-cell media">
+      <p><%= emptyText %></p>
+    </li>
+    <% } %> 
+  </ul>
+</div>

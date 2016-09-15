@@ -1,0 +1,13 @@
+<div class="segmented-control content-padded bottom-drop-shadow">
+  <% if (typeof(hospital_id) !== 'undefined' && hospital_id === 1) { %>
+  <a id="tabWestwood" class="control-item active" data-id="1">Westwood</a>
+  <a id="tabSantaMonica" class="control-item" data-id="2">Santa Monica</a>
+  <% } else { %>
+  <a id="tabWestwood" class="control-item" data-id="1">Westwood</a>
+  <a id="tabSantaMonica" class="control-item active" data-id="2">Santa Monica</a>
+  <% } %>
+</div> 
+<div class="main-header content-padded"><h4><%= title %></h4></div>
+<div class="main-content content-padded top-inset-shadow bottom-drop-shadow">
+  <p><%= info %><p>
+</div>

@@ -1,0 +1,9 @@
+<div class="search-results-list shadow">
+  <ul>
+    <% if (typeof(results) !== 'undefined' && results.length > 0) { %>
+    <% for (var i = 0; i < results.length; i++) { %>
+    <li><a href='#<%= root %>/<%= results[i].id %>'><%= results[i].name %></a></li>
+    <% } %>
+    <% } %>
+  </ul>
+</div>

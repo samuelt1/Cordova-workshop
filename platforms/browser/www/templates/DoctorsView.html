@@ -1,0 +1,33 @@
+<div class="search-header content-padded">
+  <form>
+    <button class="btn search-button">
+      <span class="icon"><img src="img/icons/search.png" class="icon-search"></img></span>
+    </button>
+    <div class="search-input-area">
+      <input id="txtSearch" type="search" class="search-query inset-shadow" placeholder='<%= searchText %>' autocomplete="off">
+      <div class="search-results"></div>
+    </div>
+  </form>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <% if (typeof(doctors) !== 'undefined' && doctors.length > 0) { %>
+    <% for(var i = 0; i < doctors.length; i++) { %>
+    <li class="table-view-cell media">
+      <a class="navigate-right" href='#team/doctors/<%= doctors[i].id %>'>
+        <% if (doctors[i].image_data) { %>
+        <img class="media-object pull-left list-image" src='data:<%= doctors[i].image_type %>;base64,<%= doctors[i].image_data %>' />
+        <% } else { %>
+        <img class="media-object pull-left list-image" src='img/icons/profile.png' />
+        <% } %>
+        <div class="media-body"><%= doctors[i].name_last %>, <%= doctors[i].name_first %> <%= doctors[i].name_middle %> <%= doctors[i].name_suffix %></div>
+      </a>
+    </li>
+    <% } %>
+    <% } else { %>
+    <li class="table-view-cell media">
+      <p><%= emptyText %></p>
+    </li>
+    <% } %> 
+  </ul>
+</div>

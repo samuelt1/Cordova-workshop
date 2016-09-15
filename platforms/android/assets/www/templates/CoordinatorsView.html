@@ -1,0 +1,28 @@
+<div class="search-header content-padded">
+  <form>
+    <button class="btn search-button">
+      <span class="icon"><img src="img/icons/search.png" class="icon-search"></img></span>
+    </button>
+    <div class="search-input-area">
+      <input id="txtSearch" type="search" class="search-query inset-shadow" placeholder='<%= searchText %>' autocomplete="off">
+      <div class="search-results"></div>
+    </div>
+  </form>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <% if (typeof(coordinators) !== 'undefined' && coordinators.length > 0) { %>
+    <% for(var i = 0; i < coordinators.length; i++) { %>
+    <li class="table-view-cell media">
+      <a class="navigate-right" href='#team/coordinators/<%= coordinators[i].id %>'>
+        <div class="media-body"><%= coordinators[i].name_last %>, <%= coordinators[i].name_first %> <%= coordinators[i].name_middle %></div>
+      </a>
+    </li>
+    <% } %>
+    <% } else { %>
+    <li class="table-view-cell media">
+      <p><%= emptyText %></p>
+    </li>
+    <% } %> 
+  </ul>
+</div>

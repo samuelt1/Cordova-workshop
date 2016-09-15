@@ -1,0 +1,44 @@
+<div class="dashboard-items">
+  <ul class="carousel-menu">
+    <% for (var i = 0; i < modules.length; i++) { %>
+    <li class="item-container">
+      <% if (modules[i].key === 'locations' || modules[i].key === 'contact'|| modules[i].key === 'services') { %>
+      <a href='#<%= modules[i].key %>/<%= hospital_id %>'>
+        <% } else { %>
+        <a href='#<%= modules[i].key %>'>
+          <% } %>
+          <div class="dashboard-item">
+            <div id='dashboard-item-<%= modules[i].key %>'  class="dashboard-item-icon">
+              <img id="imgChart" src='img/icons/<%= modules[i].key %>.png' class="carousel-icon"></img>
+            </div>
+          </div>
+        </a>
+        <label class="dashboard-item-label"><%= modules[i].label %></label>
+    </li>
+    <% } %>
+  </ul>
+</div>
+<script>
+  (function () {
+    var contentHeight,
+            navCount,
+            navIconHeight,
+            navHeight,
+            itemHeight,
+            iconDim;
+            
+    contentHeight = $("#content").height();
+
+    navIconHeight = 30;
+    navCount = 3;
+    navHeight = 20;
+    
+    itemHeight = (contentHeight - navHeight) / navCount;
+    iconDim = itemHeight/2;
+    
+    $(".dashboard-item").css('height', itemHeight + 'px');
+    $(".item-container").css('height', itemHeight + 'px');
+    $(".carousel-icon").css('height', iconDim + 'px');
+    $(".carousel-icon").css('width', iconDim + 'px');
+  })();
+</script>

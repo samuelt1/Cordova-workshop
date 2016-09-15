@@ -1,0 +1,45 @@
+<div class="main-header content-padded">
+  <h4><%= title %></h4>
+</div>
+<div class="main-content-section-2 content-padded top-inset-shadow bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <li class="table-view-cell media">
+      <% if (is_active === true) { %>
+      <button id="btnReminderSwitch" class="toggle pull-right active">
+        <div class="toggle-handle"></div>
+      </button>
+      <% } else { %>
+      <button id="btnReminderSwitch" class="toggle pull-right">
+        <div class="toggle-handle"></div>
+      </button>
+      <% } %>
+      Turn on/off
+    </li>
+
+    <li class="table-view-cell media">
+      <% if (typeof(remind_at) !== 'undefined') { %> 
+      <input id="txtReminderTime" type="time" name="time" class="btn dropdown pull-right" value='<%= remind_at %>' />
+      <% } else { %> 
+      <input id="txtReminderTime" type="time" name="time" class="btn dropdown pull-right" />
+      <% } %>
+      Remind at
+    </li>
+    <li class="table-view-cell media">
+      Snooze Time<br/>
+      <div class="radio-list">
+        <% if (typeof(snoozeTimes) !== 'undefined' && snoozeTimes.length > 0) { %>
+        <% for(var i = 0; i < snoozeTimes.length; i++) { %>
+        <% if (snoozeTimes[i].selected) { %>
+        <label><input type="radio" name="snooze" value='<%= snoozeTimes[i].value %>' checked="checked"/> <%= snoozeTimes[i].name %></label><br/>
+        <% } else { %>  
+        <label><input type="radio" name="snooze" value='<%= snoozeTimes[i].value %>'/> <%= snoozeTimes[i].name %></label><br/>
+        <% } %>
+        <% } %>
+        <% } %>
+      </div>
+    </li>
+    <li class="table-view-cell-last">
+      <button id="btnSave" class="btn btn-primary btn-block"><%= saveText %></button>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,55 @@
+<div class="content-padded">
+  <ul class="table-view">
+    <li class="table-view-divider"><h4><%= doctor.name_last %>, <%= doctor.name_first %> <%= doctor.name_middle %>
+        <% if (typeof(doctor.name_suffix) !== 'undefined' && doctor.name_suffix !== '') { %>
+        <%= doctor.name_suffix %></h4>
+      <% } %>
+    </li>
+    <li class="table-view-cell">
+      <% if (doctor.image_data) { %>
+      <img class="media-object pull-left" src='data:<%= doctor.image_type %>;base64,<%= doctor.image_data %>' />
+      <% } else { %>
+      <img class="media-object pull-left" src='img/icons/profile.png' />
+      <% } %>
+      <%= doctor.title %>
+    </li>
+    <li class="table-view-divider">Languages Spoken</li>
+    <li class="table-view-cell"><p><%= doctor.languages %></p></li>
+    <li class="table-view-divider">Hospital Affiliation</li>
+    <li class="table-view-cell"><p><%= doctor.hospital %></p></li>
+    <li class="table-view-divider">Responsibilities</li>
+    <li class="table-view-cell"><p><%= doctor.responsibilities %></li>
+    <li class="table-view-divider">Contact</li>
+    <li class="table-view-cell">
+      <p>
+        <% if (typeof(doctor.email) !== 'undefined' && doctor.email !== '') { %>
+        Email: <a href='mailto:<%= doctor.email %>'><%= doctor.email %></a></br>
+        <% } %>
+        <% if (typeof(doctor.phone) !== 'undefined' && doctor.phone !== '') { %>
+        Phone: <a href='tel:<%= doctor.phone %>'><%= doctor.phone %></a></br>
+        <% } %>
+        <% if (typeof(doctor.fax) !== 'undefined' && doctor.fax !== '') { %>
+        Fax: <%= doctor.fax %></br>
+        <% } %>
+      </p>
+      <% if (typeof(doctor.clinic_location_html) !== 'undefined' && doctor.clinic_location_html !== '') { %>
+    <li class="table-view-divider">Clinic Location</li>
+    <li class="table-view-cell"><p><%= doctor.clinic_location_html %></p></li>
+    <% } %>
+    <li class="table-view-divider">Education</li>
+    <li class="table-view-cell"><p><%= doctor.education_html %></p></li>
+    <li class="table-view-divider">Clinical Interest</li>
+    <li class="table-view-cell markdown"><p><%= doctor.clinical_interests_html %></p></li>
+  </ul>
+</div>
+<script>
+  $('.markdown').on('click', 'a', function (e) {
+    var elem = $(this);
+    var url = elem.attr('href');
+    if (url.indexOf('http://') !== -1) {
+      e.preventDefault();
+      window.open(url, '_system');
+      return false;
+    }
+  });
+</script>

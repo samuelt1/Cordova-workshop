@@ -1,0 +1,20 @@
+<div class="main-header content-padded"><h4><%= condition.name %></h4></div>
+<div class="main-content content-padded top-inset-shadow bottom-drop-shadow">
+  <div class="markdown"><%= condition.content_html %></div>
+  <% if (typeof(tags) !== 'undefined') { %> 
+  <div class="tags"> 
+    <strong>tags: </strong><%= tags %>
+  </div>
+  <% } %>
+</div>
+<script>
+  $('.markdown').on('click', 'a', function (e) {
+    var elem = $(this);
+    var url = elem.attr('href');
+    if (url.indexOf('http://') !== -1) {
+      e.preventDefault();
+      window.open(url, '_system');
+      return false;
+    }
+  });
+</script>

@@ -1,0 +1,30 @@
+<div class="content-padded">
+  <ul class="table-view">
+    <li class="table-view-divider"><h4><%= resident.name_last %>, <%= resident.name_first %> <%= resident.name_middle %>
+        <% if (typeof(resident.name_suffix) !== 'undefined' && resident.name_suffix !== '') { %>
+        <%= resident.name_suffix %></h4>
+      <% } %>
+    </li>
+    <li class="table-view-cell">
+      <% if (resident.image_data) { %>
+      <img class="media-object pull-left" src='data:<%= resident.image_type %>;base64,<%= resident.image_data %>' />
+      <% } else { %>
+      <img class="media-object pull-left" src='img/icons/profile.png' />
+      <% } %>
+      <%= resident.year_started %>
+    </li>
+    <li class="table-view-divider">Education</li>
+    <li class="table-view-cell"><p><%= resident.education_html %></p></li>
+  </ul>
+</div>
+<script>
+  $('.markdown').on('click', 'a', function (e) {
+    var elem = $(this);
+    var url = elem.attr('href');
+    if (url.indexOf('http://') !== -1) {
+      e.preventDefault();
+      window.open(url, '_system');
+      return false;
+    }
+  });
+</script>

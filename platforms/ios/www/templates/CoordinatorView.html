@@ -1,0 +1,38 @@
+<div class="content-padded">
+  <ul class="table-view">
+    <li class="table-view-divider">
+      <h4><%= coordinator.name_last %>, <%= coordinator.name_first %> <%= coordinator.name_middle %>
+        <% if (typeof(coordinator.name_suffix) !== 'undefined' && coordinator.name_suffix !== '') { %>
+        <%= coordinator.name_suffix %>
+        <% } %>
+      </h4>
+    </li>
+    <li class="table-view-divider">Contact</li>
+    <li class="table-view-cell">
+      <p>
+        <% if (typeof(coordinator.email) !== 'undefined' && coordinator.email !== '') { %>
+        Phone: <a href='mailto:<%= coordinator.email %>'><%= coordinator.email %></a></br>
+        <% } %>
+        <% if (typeof(coordinator.phone) !== 'undefined' && coordinator.phone !== '') { %>
+        Phone: <a href='tel:<%= coordinator.phone %>'><%= coordinator.phone %></a></br>
+        <% } %>
+        <% if (typeof(coordinator.fax) !== 'undefined' && coordinator.fax !== '') { %>
+        Fax: <%= coordinator.fax %></br>
+        <% } %>
+      </p>
+    </li>
+    <li class="table-view-divider">Doctors</li>
+    <li class="table-view-cell">
+      <p>
+        <% if (typeof(coordinator.team_doctors) !== 'undefined' && coordinator.team_doctors !== '') { %>
+        <% for (var i = 0; i < coordinator.team_doctors.length; i++) { %>
+        <a href='#team/doctors/<%= coordinator.team_doctors[i].id %>' ><%= coordinator.team_doctors[i].name_last %>, <%= coordinator.team_doctors[i].name_first %> <%= coordinator.team_doctors[i].name_middle %> <%= coordinator.team_doctors[i].name_suffix %>
+        </a> <br/>
+        <% } %>
+        <% } else { %>
+        <%= emptyDoctorListText %>
+        <% } %>
+      </p>
+    </li>
+  </ul>
+</div>

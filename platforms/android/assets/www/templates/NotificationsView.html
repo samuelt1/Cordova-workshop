@@ -1,0 +1,58 @@
+<div class="main-header content-padded">
+  <% if (is_show_active_toggle === true) { %>
+  <% if (is_active === true) { %>
+  <button id="btnOnOff" class="toggle pull-right active">
+    <div class="toggle-handle"></div>
+  </button>
+  <% } else { %>
+  <button id="btnOnOff" class="toggle pull-right">
+    <div class="toggle-handle"></div>
+  </button>
+  <% } %>
+  <% } %>
+  <h4><%= title %></h4>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <% if (typeof(notificationsArr) !== 'undefined' && notificationsArr.length > 0) { %>
+    <% for(var i = 0; i < notificationsArr.length; i++) { %>
+    <% var dateNotification = moment(notificationsArr[i].date) %>
+    <% if (new Date(notificationsArr[i].date).setHours(0,0,0,0) === new Date().setHours(0,0,0,0)) { %>
+    <li class="table-view-cell active">
+      <span class="today">Today</span>
+      <span class="listed-date"><%= moment(notificationsArr[i].date).format('LLL') %>
+      </span>
+      <br/>
+      <% if (notificationsArr[i].is_completed === true) { %> 
+      <input type="checkbox" name="checkbox-<%= i %>" id='chkCompleted-<%= i %>' class="css-checkbox" data-id='<%= notificationsArr[i].id %>' checked/>
+      <% } else { %>
+      <input type="checkbox" name="checkbox-<%= i %>" id='chkCompleted-<%= i %>' class="css-checkbox" data-id='<%= notificationsArr[i].id %>' />
+      <% } %>
+      <label class="css-label notification-details" data-id='<%= notificationsArr[i].id %>'>
+        <%= notificationsArr[i].title %></label>
+    </li>
+    <% } else { %>
+    <li class="table-view-cell">
+      <span class="listed-date"><%= moment(notificationsArr[i].date).format('LLL') %>
+      </span>
+      <br/>
+      <% if (notificationsArr[i].is_completed === true) { %> 
+      <input type="checkbox" name="checkbox-<%= i %>" id='chkCompleted-<%= i %>' class="css-checkbox" data-id='<%= notificationsArr[i].id %>' checked/>
+      <% } else { %>
+      <input type="checkbox" name="checkbox-<%= i %>" id='chkCompleted-<%= i %>' class="css-checkbox" data-id='<%= notificationsArr[i].id %>' />
+      <% } %>
+      <label class="css-label notification-details" data-id='<%= notificationsArr[i].id %>'>
+        <%= notificationsArr[i].title %></label>
+    </li>
+    <% } %>
+    <% } %>
+    <% } else { %>
+    <li class="table-view-cell media">
+      <p><%= emptyText %></p>
+    </li>
+    <% } %> 
+    <li class="table-view-cell-last">
+      <button id="btnToggleCompleted" class="btn btn-primary btn-block"><%= toggleText %></button>
+    </li>
+  </ul>
+</div>

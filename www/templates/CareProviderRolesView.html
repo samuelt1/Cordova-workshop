@@ -1,0 +1,44 @@
+<div class="main-header content-padded"><h4><%= title %></h4></div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <% if (typeof(roles) !== 'undefined' && roles.length > 0) { %>
+    <li>
+      <div id="accordion" class="accordion">
+        <% for(var i = 0; i < roles.length; i++) { %>
+        <h3 class="accordion-header"><%= roles[i].name %></h3>
+        <div class="accordion-content markdown">
+          <%= roles[i].description_html %>
+        </div>
+        <% } %>
+      </div>
+    </li>
+    <% } else { %>
+    <li class="table-view-cell media">
+      <p><%= emptyText %></p>
+    </li>
+    <% } %> 
+
+  </ul>
+</div>  
+<script>
+  $('#accordion').accordion({
+    active: false,
+    collapsible: true,
+    autoHeight: false,
+    heightStyle: 'content'
+  });
+  $('#accordion').bind('click', function () {
+    $('.accordion-content').scrollTop();
+  });
+</script>
+<script>
+  $('.markdown').on('click', 'a', function (e) {
+    var elem = $(this);
+    var url = elem.attr('href');
+    if (url.indexOf('http://') !== -1) {
+      e.preventDefault();
+      window.open(url, '_system');
+      return false;
+    }
+  });
+</script>

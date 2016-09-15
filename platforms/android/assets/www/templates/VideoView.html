@@ -1,0 +1,47 @@
+<div class="main-header content-padded">
+  <h4><%= title %></h4>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <% if(isConnected){ %>
+  
+  <div id="player"><img src="img/icons/spinner.gif" class="spinner"></div>
+  <% } else { %>
+  <p>No internet connection detected. <br>This feature will not work.</p>
+  <% }%>
+</div>
+<!--<script src="http://www.youtube.com/player_api"></script>-->
+<script>
+    var windowHeight = window.innerHeight;
+    var headerHeight = 80;
+    var subHeadderHeight = 56;
+    var controlsHeight = 50;
+    var footerHeight = 60;
+    var navBorderWidth = 2.8;
+
+   var videoHeight = windowHeight - headerHeight - footerHeight - navBorderWidth - subHeadderHeight -controlsHeight;
+    $("#player").height(videoHeight);
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // 3. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  var player;
+  if(window.YT){
+    onYouTubeIframeAPIReady();
+  }
+  function onYouTubeIframeAPIReady() {
+    $("#spinner").hide();
+    player = new YT.Player('player', {
+      height: videoHeight,
+      width: '100%',
+      videoId: "<%= youTubeId %>",
+    playerVars: {
+        html5: 1
+    },
+    });
+  }
+
+</script>

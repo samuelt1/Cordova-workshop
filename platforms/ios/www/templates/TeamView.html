@@ -1,0 +1,20 @@
+<div class="main-header content-padded">
+  <h4><%= title %></h4>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <% if (typeof(team) !== 'undefined' && team.length > 0) { %>
+    <% for(var i=0; i<team.length; i++) { %>
+        <li class="table-view-cell media">
+        <a class="navigate-right" href='#team/<%= team[i].id %>'>
+          <div class="media-body"><%= team[i].label %></div>
+        </a>
+      </li>
+      <% } %>
+      <% } else { %>
+      <li class="table-view-cell media">
+        <p><%= emptyText %></p>
+      </li>
+      <% } %> 
+  </ul>
+</div>

@@ -1,0 +1,28 @@
+<div class="main-header content-padded">
+  <h4><%= title %></h4>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <li class="table-view-cell media">
+      <a class="navigate-right" href='#terms-and-conditions'>
+        <div class="media-body">Terms and Conditions</div>
+      </a>
+    </li>
+    <li class="table-view-cell media">
+      <a class="navigate-right" href='#reminder-settings'>
+        <div class="media-body">Reminders</div>
+      </a>
+    </li>
+    <li class="table-view-cell media">
+      Version <span class="version-number"><%= version %></span>
+    </li>
+    <li class="table-view-cell media">
+      <div class="content-padded settings-area">
+        <button id="btnClear" class="btn settings-button shadow"><strong>Clear All Data</strong></button>
+      </div>
+    </li>
+  </ul>
+  <div class="content-padded copyright">
+    &copy; <%= year %> <%= copyright %>. All rights reserved.</br>
+  </div>
+</div>

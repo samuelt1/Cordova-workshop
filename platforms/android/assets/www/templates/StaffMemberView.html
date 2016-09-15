@@ -1,0 +1,17 @@
+<div class="content-padded">
+  <ul class="table-view">
+    <li class="table-view-divider">
+      <h4><%= staff_member.name_last %>, <%= staff_member.name_first %> <%= staff_member.name_middle %>
+        <% if (typeof(staff_member.name_suffix) !== 'undefined' && staff_member.name_suffix !== '') { %>
+        <%= staff_member.name_suffix %>
+        <% } %>
+      </h4>
+    </li>
+    <li class="table-view-divider">Role</li>
+    <li class="table-view-cell">
+      <p>
+        <%= staff_member.role %>
+      </p>
+    </li>
+  </ul>
+</div>

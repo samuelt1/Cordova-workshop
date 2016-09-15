@@ -1,0 +1,58 @@
+<div class="segmented-control content-padded bottom-drop-shadow">
+  <% if (typeof(hospital_id) !== 'undefined' && hospital_id === 1) { %>
+  <a id="tabWestwood" class="control-item active" data-id="1">Westwood</a>
+  <a id="tabSantaMonica" class="control-item" data-id="2">Santa Monica</a>
+  <% } else { %>
+  <a id="tabWestwood" class="control-item" data-id="1">Westwood</a>
+  <a id="tabSantaMonica" class="control-item active" data-id="2">Santa Monica</a>
+  <% } %>
+</div> 
+<div class="main-header content-padded">  
+  <h4><%= title %></h4>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <li>
+      <% if (img.url !== '') { %>
+      <div id="canvas-area">
+        <canvas id="mycanvas" style="width:100%;height:100%"></canvas>
+      </div>
+      <% } %>
+    </li>
+    <li class="content-padded" >
+      <p class="content-padded"><%= content %></p>
+    </li>
+  </ul>
+  <br/>
+</div>
+<script>
+  (function () {
+    var canvasArea,
+            imgCanvas,
+            imgUrl,
+            imgHeight,
+            imgWidth,
+            ratio;
+
+    canvasArea = document.getElementById('canvas-area');
+    imgCanvas = document.getElementById('mycanvas');
+    imgUrl = "<%= img.url %>";
+
+    if (imgUrl != "") {
+      imgHeight = parseFloat("<%= img.height %>");
+      imgWidth = parseFloat("<%= img.width %>");
+
+      var imgMap = new ImgTouchCanvas({
+        canvas: imgCanvas,
+        path: imgUrl
+      });
+
+      canvasArea.width = window.innerWidth - 20;
+      canvasArea.height = window.innerHeight - 20;
+
+      ratio = imgWidth < imgHeight ? (imgWidth / imgHeight) : (imgHeight / imgWidth);
+      imgCanvas.width = canvasArea.width;
+      imgCanvas.height = canvasArea.width * ratio;
+    }
+  })();
+</script>

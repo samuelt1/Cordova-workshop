@@ -1,0 +1,80 @@
+<div class="main-header content-padded">
+  <h4><%= title %></h4>
+</div>
+<div class="main-content-section-2 content-padded top-inset-shadow bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <li class="table-view-cell media">
+      Date
+      <% if (surgery.id !== 0) { %>
+      <input id="txtDate" type="date" placeholder="MM/DD/YYYY" value='<%= surgery.date %>'></input>
+      <% } else { %> 
+      <input id="txtDate" type="date" placeholder="MM/DD/YYYY"></input>
+      <% } %>
+    </li>
+    <li class="table-view-cell media">
+      Location<br/>
+      <div class="radio-list">
+        <% if (typeof(locationsArr) !== 'undefined' && locationsArr.length > 0) { %>
+        <% for(var i = 0; i < locationsArr.length; i++) { %>
+        <% if (surgery.location == locationsArr[i].id) { %>
+        <input type="radio" name="location" value='<%= locationsArr[i].id %>' checked="checked"/><label> <%= locationsArr[i].name %></label>
+        <% } else { %>  
+        <input type="radio" name="location" value='<%= locationsArr[i].id %>'/><label> <%= locationsArr[i].name %></label>
+        <% } %>
+        <% } %>
+        <% } %>
+      </div>
+    </li>
+    <li class="table-view-cell media">
+      Surgery<br/>
+      <div class="radio-list">
+        <% if (typeof(surgeriesArr) !== 'undefined' && surgeriesArr.length > 0) { %>
+        <% for(var i = 0; i < surgeriesArr.length; i++) { %>
+        <% if (surgery.surgery == surgeriesArr[i].id) { %>
+        <label><input type="radio" name="surgery" value='<%= surgeriesArr[i].id %>' checked="checked"/> <%= surgeriesArr[i].name %></label>
+        <% } else { %>  
+        <label><input type="radio" name="surgery" value='<%= surgeriesArr[i].id %>'/> <%= surgeriesArr[i].name %></label>
+        <% } %>
+        <% } %>
+        <% } %>
+      </div>
+    </li>
+    <li class="table-view-cell media">
+      User<br/>
+      <div class="radio-list">
+        <% if (typeof(usersArr) !== 'undefined' && usersArr.length > 0) { %>
+        <% for(var i = 0; i < usersArr.length; i++) { %>
+        <% if (surgery.user == usersArr[i].id) { %>
+        <label><input type="radio" name="user" value='<%= usersArr[i].id %>' checked="checked"/> <%= usersArr[i].name %></label><br/>
+        <% } else { %>  
+        <label><input type="radio" name="user" value='<%= usersArr[i].id %>'/> <%= usersArr[i].name %></label><br/>
+        <% } %>
+        <% } %>
+        <% } %>
+      </div>
+    </li>
+    <li class="table-view-cell-last">
+      <button id="btnSave" class="btn btn-primary btn-block"><%= saveText %></button>
+    </li>
+  </ul>
+</div>
+<script>
+  var doChange = false;
+  $('select').on('focusin change focusout', function (e) {
+    switch (e.type) {
+      case 'focusin':
+        doChange = true;
+        break;
+      case 'change':
+        if (!doChange) {
+          return false;
+        }
+        break;
+      case 'focusout':
+        doChange = false;
+        break;
+    }
+    if (e.type == 'change') {
+      // do your onchange stuff
+    }
+  });</script>

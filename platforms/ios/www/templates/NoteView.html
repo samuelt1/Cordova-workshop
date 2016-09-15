@@ -1,0 +1,34 @@
+<div class="main-header content-padded">
+  <h4><%= title %></h4>
+</div>
+<div class="main-content content-padded top-inset-shadow bottom-drop-shadow">
+  <form>
+    <p>Title
+      <input id="txtTitle" type="text" value='<%= note.title %>'>
+    <p>Notes
+      <textarea id="txtNote" rows="5" class="text-area"><%= note.content_html %></textarea>
+    </p>
+    <p>Image</p>
+    <center>
+      <% if (note.img_data) { %>
+      <a id="btnDelete"><img src="img/icons/delete.png"  class="icon-delete pull-right capture-delete"></img></a>
+      <img id="imgCapture" class="capture-image" src='data:image/jpeg;base64,<%= note.img_data %>'>
+      </img>
+      <% if (isShowCamera === true) { %>
+      <a id='btnCapture' class='btn btn-capture' style="display: none"><img class="icon-capture" src="img/icons/camera.png"></img></a>
+      <% } %>
+      <% } else { %>
+      <a id="btnDelete" style="display: none"><img src="img/icons/delete.png"  class="icon-delete pull-right capture-delete"></img></a>
+      <img id="imgCapture" class="capture-image" style="display: none" src='data:image/jpeg;base64,<%= note.img_data %>'>
+      </img>
+      <% if (isShowCamera === true) { %>
+      <a id='btnCapture' class='btn btn-capture'><img class="icon-capture" src="img/icons/camera.png"></img></a>
+      <% } %>
+      <% } %>
+    </center>
+    <div>
+      <button id="btnSave" class='btn btn-primary btn-block'><%= saveText %></button>
+      <button id="btnCancel" class='btn btn-block'><%= cancelText %></button>
+    </div>
+  </form>
+</div> 

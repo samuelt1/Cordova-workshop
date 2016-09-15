@@ -1,0 +1,23 @@
+<div class="main-header content-padded">
+  <h4><%= title %></h4>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <% if (typeof(socialMedia) !== 'undefined' && socialMedia.length > 0) { %>
+    <% for(var i = 0; i < socialMedia.length; i++) { %>
+    <li class="table-view-cell media">
+      <a class="social-media navigate-right" data-id='<%= socialMedia[i].id %>'>
+        <div class="media-body">
+          <span class="icon"><img id="imgChart" src='<%= socialMedia[i].src %>'class="icon-inline"></img></span>
+          <%= socialMedia[i].label %>
+        </div>
+      </a>
+    </li>
+    <% } %>
+    <% } else { %>
+    <li class="table-view-cell media">
+      <p><%= emptyText %></p>
+    </li>
+    <% } %> 
+  </ul>
+</div>

@@ -1,0 +1,57 @@
+<div class="main-header content-padded">
+  <h4><%= title %></h4>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <li>
+      <% if (img.url !== "") { %>
+      <div id="canvas-area">
+        <canvas id="mycanvas"></canvas>
+      </div>
+      <% if (hospital_id === 1) { %>
+      <img src="img/maps/ww-legend.png" style="width:100%; height:auto"></img>
+      <% } else { %>
+      <img src="img/maps/sm-legend.png" style="width:100%; height:auto"></img>
+      <% } %>
+      <% } %>
+    </li>
+    <li class="content-padded" >
+      <p class="content-padded"><%= content %></p>
+    </li>
+    <li class="content-padded">
+      <div class="table-of-contents">
+        <% if (table_of_contents.length > 0) { %>
+        <br/>
+        <div class="table-of-contents-header">
+          <label>Department</label>
+          <% if (table_of_contents[0].room === "") { %>
+          <label class="pull-right">Floor</label>
+          <% } else { %>
+          <label class="pull-right">Room</label>
+          <% } %>
+        </div>
+        <ul>
+          <% for (i = 0; i < table_of_contents.length; i++) { %>
+          <li>
+            <span class="definition"><%= table_of_contents[i].name %></span>
+            <% if (table_of_contents[i].room === "") { %>
+            <span class="defined"><%= table_of_contents[i].floor %></span>
+            <% } else if (table_of_contents[i].room === " -- ") { %>
+            <% if (table_of_contents[i].floor.indexOf(",") > -1) { %>
+            <span class="defined">Levels <%= table_of_contents[i].floor %></span>
+            <% } else { %>
+            <span class="defined">Level <%= table_of_contents[i].floor %></span>
+            <% } %> 
+            <% } else { %>
+            <span class="defined"><%= table_of_contents[i].room %></span>
+            <% } %>
+          </li>
+          <% } %>
+        </ul>
+        <% } %>
+        <br/>
+      </div>
+    </li>
+  </ul>
+</div>
+<br/>

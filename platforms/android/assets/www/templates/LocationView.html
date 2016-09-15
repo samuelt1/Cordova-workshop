@@ -1,0 +1,64 @@
+<div class="main-header content-padded">
+  <% if (typeof(is_native) !== 'undefined' && is_native === false) { %>
+  <button id="btnReset" class="btn btn-link btn-nav pull-right" onClick="reset()">
+    <img src="img/icons/refresh.png" class="icon-title"></img>
+  </button>
+  <% } %>
+  <h4><%= name %></h4>
+</div>
+<div class="main-content-list content-padded bottom-drop-shadow">
+  <ul class="table-view top-inset-shadow">
+    <li>
+      <div id="focal">
+        <div class="parent">
+          <div class="panzoom">
+            <img class="map" src='<%= map %>'>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="content-padded">
+      <p class="content-padded">
+        <strong><%= name %></strong></br>
+        <% if (typeof(is_native) !== 'undefined' && is_native === true) { %>
+        <a href='geo:<%= coord %>'><%= address %></a></br>
+        <% } else { %>
+        <%= address %></br>
+        <% } %>
+        <a href='tel:<%= phone %>'><%= phone %></a></br>
+        <% if (typeof(hours) !== 'undefined' && hours.length > 0) { %>
+        </br>
+        <strong>Hours:</strong></br>
+        <% for (var i = 0; i < hours.length; i++) { %>
+        <%= hours[i] %></br>
+        <% } %>
+        <% } %>
+        </br>
+      </p>
+    <li>
+  </ul>
+</div>
+<script>
+  (function () {
+    var $section = $('#focal');
+    var $panzoom = $section.find('.panzoom').panzoom();
+    $panzoom.parent().on('mousewheel.focal', function (e) {
+      e.preventDefault();
+      var delta = e.delta || e.originalEvent.wheelDelta;
+      var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+      $panzoom.panzoom('zoom', zoomOut, {
+        minScale: 1,
+        maxScale: 5,
+        disablePan: true,
+        contain: 'invert',
+        increment: 0.2,
+        animate: false,
+        focal: e
+      });
+    });
+  })();
+
+  function reset() {
+    $('#focal').find('.panzoom').panzoom('reset');
+  }
+</script>

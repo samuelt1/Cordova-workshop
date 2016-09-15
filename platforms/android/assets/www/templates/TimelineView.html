@@ -1,0 +1,169 @@
+<div class="content-padded personalize-area">
+  <button class="btn personalize-button shadow"><strong><%= personalizeText %></strong></button>
+</div>
+<% if (typeof(timelineEvents) !== 'undefined' && timelineEvents.length > 0) { %>
+<div class="content-padded">
+  <% if (isPersonalized === true) { %>
+  <div class="timeline-status timeline-status-personalized">Personalized</div>
+  <% } else { %>
+  <div class="timeline-status timeline-status-unpersonalized">Not Personalized</div>
+  <% } %>
+  <div class="owl-carousel-tab owl-carousel">
+    <div class="item timeline-tab timeline-tab-pre"><label>Preparing for Surgery</label></div>
+    <div class="item timeline-tab timeline-tab-pre"></div>
+    <div class="item timeline-tab timeline-tab-pre"></div>
+    <div class="item timeline-tab timeline-tab-pre"></div>
+    <div class="item timeline-tab timeline-tab-pre"></div>
+    <div class="item timeline-tab timeline-tab-pre"></div>
+    <div class="item timeline-tab timeline-tab-pre"><label class="pull-right">Preparing for Surgery</label></div>
+    <div class="item timeline-tab timeline-tab-day"><label>Day of Surgery</label></div>
+    <div class="item timeline-tab timeline-tab-post"><label>What to Expect After Surgery</label></div>
+    <div class="item timeline-tab timeline-tab-post"></div>
+    <div class="item timeline-tab timeline-tab-post"></div>
+    <div class="item timeline-tab timeline-tab-post"></div>
+  </div>
+  <div class="owl-carousel-events owl-carousel bottom-drop-shadow">
+    <% for (var i = 0; i < timelineEvents.length; i++) { %>
+    <% if (currentIndex === i) { %> 
+    <div id='selected-event-<%= timelineEvents[i].id %>' class="item timeline-header active" data-id='<%= timelineEvents[i].id %>'>
+      <% } else { %>
+      <div id='selected-event-<%= timelineEvents[i].id %>' class="item timeline-header" data-id='<%= timelineEvents[i].id %>'>
+        <% } %>
+        <% if (isPersonalized === true) { %> 
+        <% eventDate = moment(info.date).add(timelineEvents[i].day, 'days').format('L').split('/')[1] %>
+        <% eventMonth = moment(info.date).add(timelineEvents[i].day, 'days').format('MMM') %>
+        <a class="timeline-link"><%= eventMonth %><p><%= eventDate %></p></a>
+        <% } else { %> 
+        <% if (timelineEvents[i].day === 0) { %>
+        <a class="timeline-link">Day of Surgery<p></p></a>
+        <% } else if (timelineEvents[i].day === -1) { %>
+        <a class="timeline-link">1 Day Before</a>
+        <% } else if (timelineEvents[i].day < 0) { %>
+        <a class="timeline-link"><%= -1 * timelineEvents[i].day %> Days Before</a>
+        <% } else if (timelineEvents[i].day > 0) { %>
+        <a class="timeline-link">Post-Op<br/>Day <%= timelineEvents[i].day %></a>
+        <% } %>
+        <% } %>
+      </div>
+      <% } %>
+    </div> 
+  </div>
+  <div class="main-content-section content-padded bottom-drop-shadow">
+    <ul class="table-view">
+      <% for (var i = 0; i < timelineEvents.length; i++) { %>
+      <% if (parseInt(currentIndex) === i) { %> 
+      <li id='selected-title-<%= timelineEvents[i].id %>' class="timeline-event table-view-cell">
+        <h4><%= timelineEvents[i].title %></h4>
+      </li>
+      <li id='selected-content-<%= timelineEvents[i].id %>' class="timeline-event table-view-cell markdown">
+        <p><%= timelineEvents[i].content_html %></p>
+      </li>
+      <% } else { %>
+      <li id='selected-title-<%= timelineEvents[i].id %>' class="timeline-event table-view-cell hide">
+        <h4><%= timelineEvents[i].title %></h4>
+      </li>
+      <li id='selected-content-<%= timelineEvents[i].id %>' class="timeline-event table-view-cell markdown hide">
+        <p><%= timelineEvents[i].content_html %></p>
+      </li>
+      <% } %>
+      <% } %>
+    </ul>
+  </div>
+  <% } else { %>
+  <div class="main-header content-padded">
+    <h4><%= title %></h4>
+  </div>
+  <div class="main-content-list content-padded bottom-drop-shadow">
+    <ul class="table-view content-padded">
+      <li><p class="content-padded"><%= emptyText %></p></li>
+    </ul>
+  </div>
+  <% } %>
+  <script>
+    $(function () {
+      var owl,
+              afterAction;
+
+      owlTab = $('.owl-carousel-tab');
+
+      owlTab.owlCarousel({
+        loop: false,
+        margin: 0,
+        touchDrag: false,
+        mouseDrag: false,
+        items: 4,
+        itemsDesktop: [1000, 4],
+        itemsDesktopSmall: [900, 4],
+        itemsTablet: [600, 4],
+        itemsMobile: [480, 4],
+        responsive: true
+      });
+
+      owl = $('.owl-carousel-events');
+
+      moveTab = function () {
+        var indexes,
+                surgeryIndex;
+
+        indexes = this.owl.visibleItems;
+        surgeryIndex = parseInt('<%= surgeryIndex %>');
+
+        if (surgeryIndex === indexes[0]) {
+          owlTab.trigger('owl.goTo', 7);
+        } else if (surgeryIndex === indexes[1]) {
+          owlTab.trigger('owl.goTo', 6);
+        } else if (surgeryIndex === indexes[2]) {
+          owlTab.trigger('owl.goTo', 5);
+        } else if (surgeryIndex === indexes[3]) {
+          owlTab.trigger('owl.goTo', 4);
+        } else if (surgeryIndex >= indexes[0]) {
+          owlTab.trigger('owl.goTo', 0);
+        } else if (surgeryIndex <= indexes[3]) {
+          owlTab.trigger('owl.goTo', 8);
+        }
+      };
+
+      initTab = function () {
+        var currentIndex,
+                surgeryIndex,
+                isPersonalized;
+
+        currentIndex = parseInt('<%= currentIndex %>');
+        surgeryIndex = parseInt('<%= surgeryIndex %>');
+        isPersonalized = '<%= isPersonalized %>';
+
+        if (isPersonalized === 'true') {
+          owlTab.trigger('owl.goTo', currentIndex);
+          owl.trigger('owl.goTo', currentIndex);
+        } else {
+          owlTab.trigger('owl.goTo', surgeryIndex - 1);
+          owl.trigger('owl.goTo', surgeryIndex);
+        }
+      };
+
+      owl.owlCarousel({
+        loop: false,
+        margin: 0,
+        items: 4,
+        itemsDesktop: [1000, 4],
+        itemsDesktopSmall: [900, 4],
+        itemsTablet: [600, 4],
+        itemsMobile: [480, 4],
+        responsive: true,
+        afterAction: moveTab,
+        afterInit: initTab
+      });
+
+    });
+  </script>
+  <script>
+    $('.markdown').on('click', 'a', function (e) {
+      var elem = $(this);
+      var url = elem.attr('href');
+      if (url.indexOf('http://') !== -1) {
+        e.preventDefault();
+        window.open(url, '_system');
+        return false;
+      }
+    });
+  </script>
